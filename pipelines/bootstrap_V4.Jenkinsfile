@@ -35,7 +35,7 @@ java-spring-boot                   : Java Spring Boot application on GKE
 java-spring-boot-custom-truststore : Java Spring Boot application on GKE with Redis</pre>''', 
             filterLength: 1, 
             filterable: false, 
-            name: 'hemlChart', 
+            name: 'helmChart', 
             randomName: 'choice-parameter-15543677788', 
             referencedParameters: 'templateType', 
             script: [
