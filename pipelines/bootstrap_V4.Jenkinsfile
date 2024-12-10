@@ -6,9 +6,9 @@ library identifier: 'cicd-shared-library@master',
 
 properties([
     parameters([
-        choice(description: 'Template Type', choices: ['api', 'workflow', 'busfunc'], name: 'templateType'),
+        choice(choices: ['api', 'workflow', 'busfunc'], name: 'templateType'),
         booleanParam(description: 'Select checkbox for Single Code & Config repo', name: 'apiCodeconfig'),
-        choice(description: 'Domain Configuration', choices: ['payments', 'entitlements', 'entl-rolemgmt', 'ccaas', 'hbfr', 'reports', 'tpt'], name: 'domainConfiguration'),
+        choice(choices: ['payments', 'entitlements', 'entl-rolemgmt', 'ccaas', 'hbfr', 'reports', 'tpt'], name: 'domainConfiguration'),
         string(defaultValue: 'my-new-app', description: '''<pre>Please refer below table for naming conventions <br/>
 reports                           : wsit-od-reports-{name}
 tpt                               : wsit-od-pymt-tpt-{name}
