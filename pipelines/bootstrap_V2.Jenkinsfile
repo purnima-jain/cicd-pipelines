@@ -14,7 +14,6 @@ pipeline {
 void auditTools() {
     sh '''
         git version
-        docker version
         java --version
         mvn --version
     '''
