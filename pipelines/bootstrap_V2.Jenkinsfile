@@ -15,6 +15,5 @@ void auditTools() {
     sh '''
         git version
         java --version
-        mvn --version
     '''
 }
