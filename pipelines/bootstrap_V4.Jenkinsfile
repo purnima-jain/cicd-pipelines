@@ -74,7 +74,7 @@ NOTE: For deployment of external proxy please connect with devops team or email 
 
 
 def githubCredentialsId = 'opennet_tooling_git'
-def devopsMetadataRepo = 'https://alm-giithub.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git'
+def devopsMetadataRepo = 'https://alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git'
 def devopsMetadataBranch = 'develop'
 def jenkinsPath = 'https://almjenkinsci-prod.systems.uk.wf/wholeit03/job/hsbc-11858263-opennet/job/non-prod/job'
 def jenkinsHostName = 'https://almjenkinsci-prod.systems.uk.wf'
@@ -143,14 +143,22 @@ pipeline {
                             echo "GIT_PASS = ${GIT_PASS}"
                             echo "GIT_USR = ${GIT_PASS}"
 
-                            echo "devopsMetadataRepo = ${devopsMetadataRepo}"
-                            url = devopsMetadataRepo.split('//')[1]
-                            echo "url = ${url}"
+                            echo "devopsMetadataRepo = ${devopsMetadataRepo}" // https://alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git
+                            url = devopsMetadataRepo.split('//')[1] // Spilt using double-slash
+                            echo "url = ${url}" // alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git
 
-                            metadataDir = url.split('/')[2]
-                            echo "metadataDir = ${metadataDir}"
+                            metadataDir = url.split('/')[2] // Split using single-slash
+                            echo "metadataDir = ${metadataDir}" // devops-metadata.git
                             metadataDir = metadataDir.split('.git')[0]
-                            echo "metadataDir = ${metadataDir}"
+                            echo "metadataDir = ${metadataDir}" // devops-metadata
+
+                            // git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
+
+                            sh """
+                                rm -rf ${metadataDir}
+                                git clone https://${GIT_USR}:${GIT_PASS}@github.com/purnima-jain/java-features.git -b master
+                                ls -lrt
+                            """
 
 
                         }                        
