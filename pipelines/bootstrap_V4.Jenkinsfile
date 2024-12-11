@@ -154,6 +154,7 @@ pipeline {
 
                             sh """
                                 rm -rf ${metadataDir}
+                                rm -rf java-features
                                 git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
                                 ls -lrt
                             """
