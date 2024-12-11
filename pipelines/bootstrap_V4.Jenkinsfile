@@ -71,7 +71,30 @@ NOTE: For deployment of external proxy please connect with devops team or email 
         choice(description: 'Select IKP Cluster', name: 'ikpClusterName', choices: ['ikp01', 'ikp02', 'ikp03'])
     ])
 ])
-       
+
+
+def githubCredentialId = 'opennet_tooling_git'
+def devopsMetadataRepo = 'https://alm-giithub.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git'
+def devopsMetadataBranch = 'develop'
+def jenkinsPath = 'https://almjenkinsci-prod.systems.uk.wf/wholeit03/job/hsbc-11858263-opennet/job/non-prod/job'
+def jenkinsHostName = 'https://almjenkinsci-prod.systems.uk.wf'
+def jenkinsCredentialsId = 'GB-ONET-TS-DEV'
+def snapshot_job_to_run = 'hsbc-11858263-opennet/non-prod'
+def jenkinTokenValue
+def status
+def url
+def gitUrl
+def namespace
+def multiChannel
+def busFunc
+def ukDevProxyUrl
+def hkDevProxyUrl
+def dsp_dibba
+def dsp_wfnet
+def eimId
+def platformList
+
+
 
 pipeline {
     agent any
@@ -81,6 +104,27 @@ pipeline {
             steps {
                 echo 'Inside Audit Tools....'
                 auditTools()
+            }
+        }
+        stage('api-onboarding') {
+            steps {
+                script {
+                    ansiColor('xterm') {
+                        echo "apiCodeConfig = ${apiCodeConfig}"
+                        if("${apiCodeConfig}" == 'true') {
+                            templateType = 'api-code-config'
+                        }
+
+                        echo "templateType = ${templateType}"
+                        if(("${templateType}" == 'busfunc')) {
+                            timeout(time: 600, unit: 'SECONDS') {
+                                busFunc = input message: 'Please enter busfunc name', parameters: [string('busfuncName')]
+                            }
+                        }
+
+                        // Continue
+                    }
+                }
             }
         }
     }
