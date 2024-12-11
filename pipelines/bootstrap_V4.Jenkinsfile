@@ -153,7 +153,7 @@ pipeline {
                             echo "metadataDir = ${metadataDir}" // cicd-metadata
 
                             sh """
-                                // rm -rf ${metadataDir}
+                                rm -rf ${metadataDir}
                                 git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
                                 ls -lrt
                             """
