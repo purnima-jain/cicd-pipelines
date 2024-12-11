@@ -122,6 +122,9 @@ pipeline {
                             }
                         }
 
+                        echo "busFunc = ${busFunc}"
+                        echo "busFunc.busfuncName = ${busFunc.busfuncName}"
+
                         // Continue
                     }
                 }
