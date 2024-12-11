@@ -152,11 +152,12 @@ pipeline {
                             metadataDir = metadataDir.split('.git')[0]
                             echo "metadataDir = ${metadataDir}" // devops-metadata
 
+                            // rm -rf ${metadataDir}
                             // git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
 
                             sh """
-                                rm -rf ${metadataDir}
-                                git clone https://${GIT_USR}:${GIT_PASS}@github.com/purnima-jain/java-features.git -b master
+                                rm -rf cicd-metadata
+                                git clone https://${GIT_USR}:${GIT_PASS}@github.com/purnima-jain/cicd-metadata.git -b master
                                 ls -lrt
                             """
 
