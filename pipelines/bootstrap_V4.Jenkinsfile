@@ -74,8 +74,8 @@ NOTE: For deployment of external proxy please connect with devops team or email 
 
 
 def githubCredentialsId = 'opennet_tooling_git'
-def devopsMetadataRepo = 'https://alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git'
-def devopsMetadataBranch = 'develop'
+def devopsMetadataRepo = 'https://github.com/purnima-jain/cicd-metadata.git'
+def devopsMetadataBranch = 'master'
 def jenkinsPath = 'https://almjenkinsci-prod.systems.uk.wf/wholeit03/job/hsbc-11858263-opennet/job/non-prod/job'
 def jenkinsHostName = 'https://almjenkinsci-prod.systems.uk.wf'
 def jenkinsCredentialsId = 'GB-ONET-TS-DEV'
@@ -143,26 +143,22 @@ pipeline {
                             echo "GIT_PASS = ${GIT_PASS}"
                             echo "GIT_USR = ${GIT_PASS}"
 
-                            echo "devopsMetadataRepo = ${devopsMetadataRepo}" // https://alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git
+                            echo "devopsMetadataRepo = ${devopsMetadataRepo}" // https://github.com/purnima-jain/cicd-metadata.git
                             url = devopsMetadataRepo.split('//')[1] // Spilt using double-slash
-                            echo "url = ${url}" // alm-github.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git
+                            echo "url = ${url}" // github.com/purnima-jain/cicd-metadata.git
 
                             metadataDir = url.split('/')[2] // Split using single-slash
-                            echo "metadataDir = ${metadataDir}" // devops-metadata.git
+                            echo "metadataDir = ${metadataDir}" // cicd-metadata.git
                             metadataDir = metadataDir.split('.git')[0]
-                            echo "metadataDir = ${metadataDir}" // devops-metadata
-
-                            // rm -rf ${metadataDir}
-                            // git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
+                            echo "metadataDir = ${metadataDir}" // cicd-metadata
 
                             sh """
-                                rm -rf cicd-metadata
-                                git clone https://${GIT_USR}:${GIT_PASS}@github.com/purnima-jain/cicd-metadata.git -b master
+                                // rm -rf ${metadataDir}
+                                git clone https://${GIT_USR}:${GIT_PASS}@${url} -b ${devopsMetadataBranch}
                                 ls -lrt
                             """
 
-                            // def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"
-                            def domainYaml = readYaml file: "cicd-metadata/domain-config/${params.domainConfiguration}-pipeline.yaml"
+                            def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"                            
                             teamAccess = domainYaml.teamAccess
                             echo "teamAccess = ${teamAccess}"
 
