@@ -162,7 +162,8 @@ pipeline {
                             teamAccess = domainYaml.teamAccess
                             echo "teamAccess = ${teamAccess}"
 
-                            print 'teamAccess=' + teamAccess + '   teamAccess=' + teamAccess
+                            print "One teamAccess=${teamAccess}" + "   teamAccess=${teamAccess}"
+                            print "Two teamAccess=${teamAccess}       teamAccess=${teamAccess}"
 
 
                         }                        
