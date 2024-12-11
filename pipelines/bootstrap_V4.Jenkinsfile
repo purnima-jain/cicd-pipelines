@@ -73,7 +73,7 @@ NOTE: For deployment of external proxy please connect with devops team or email 
 ])
 
 
-def githubCredentialId = 'opennet_tooling_git'
+def githubCredentialsId = 'opennet_tooling_git'
 def devopsMetadataRepo = 'https://alm-giithub.systems.uk.wf/WSIT-OPENNET-DEVOPS/devops-metadata.git'
 def devopsMetadataBranch = 'develop'
 def jenkinsPath = 'https://almjenkinsci-prod.systems.uk.wf/wholeit03/job/hsbc-11858263-opennet/job/non-prod/job'
@@ -139,7 +139,7 @@ pipeline {
                             platform = "both"
                         }
 
-                        withCredentials([usernamePassword(credentialId: "${githubCredentialId}", passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USR')]) {
+                        withCredentials([usernamePassword(credentialsId: "${githubCredentialsId}", passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USR')]) {
                             echo "GIT_PASS = ${GIT_PASS}"
                             echo "GIT_USR = ${GIT_PASS}"
 
