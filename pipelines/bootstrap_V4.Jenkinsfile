@@ -22,7 +22,7 @@ NOTE: application name should not exceed more than 40 characters</pre>''',
                 name: 'application_name', 
                 trim: true),
 
-        string(defaultValue: 'com.purnima.wsit.od', 
+        string(defaultValue: 'com.wf.wsit.od',
                 description: '''<pre>API generated classes will use it as base package name
 For busfunc it should be same as it's function name</pre>''', 
                 name: 'package_name', 
