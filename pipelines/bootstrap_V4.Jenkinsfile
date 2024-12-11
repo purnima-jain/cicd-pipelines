@@ -161,6 +161,11 @@ pipeline {
                                 ls -lrt
                             """
 
+                            // def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"
+                            def domainYaml = readYaml file: "cicd-metadata/domain-config/${params.domainConfiguration}-pipeline.yaml"
+                            teamAccess = domainYaml.teamAccess
+                            echo "teamAccess = ${teamAccess}"
+
 
                         }                        
 
