@@ -66,8 +66,8 @@ NOTE: For deployment of external proxy please connect with devops team or email 
                         name: 'wfnet'),
 
         extendedChoice(multiSelectDelimiter: ',', name: 'platform', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'gcp, ikp', visibleItemCount: 5),
-        extendedChoice(multiSelectDelimiter: ',', name: 'gcpRegion', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'uk, hk', visibleItemCount: 5),
-        extendedChoice(multiSelectDelimiter: ',', name: 'ikpRegion', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'uk, hk', visibleItemCount: 5),
+        extendedChoice(multiSelectDelimiter: ',', name: 'gcpregion', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'uk, hk', visibleItemCount: 5),
+        extendedChoice(multiSelectDelimiter: ',', name: 'ikpregion', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_CHECKBOX', value: 'uk, hk', visibleItemCount: 5),
         choice(description: 'Select IKP Cluster', name: 'ikpClusterName', choices: ['ikp01', 'ikp02', 'ikp03'])
     ])
 ])
@@ -119,12 +119,41 @@ pipeline {
                         if(("${templateType}" == 'busfunc')) {
                             timeout(time: 600, unit: 'SECONDS') {
                                 busFunc = input message: 'Please enter busfunc name', parameters: [string('Business Function Name')]
-
                                 echo "busFunc = ${busFunc}"                                
                             }
                         }
 
-                        
+                        def appName = params.application_name
+                        echo "appName = ${appName}"
+                        def configRepoName = ("${templateType}" == 'api') ? "${appName}-config" : "${appName}"
+                        echo "configRepoName = ${configRepoName}"
+
+                        def gitOrg
+                        def teamAccess
+
+                        if(gcpregion.contains('uk,hk')) {
+                            gcpregion = "both"
+                        }
+
+                        if(platform.contains('gcp,ikp')) {
+                            platform = "both"
+                        }
+
+                        withCredentials([usernamePassword(credentialId: "${githubCredentialId}", passwordVariable: 'GIT_PASS', usernameVariable: 'GIT_USR')]) {
+                            echo "GIT_PASS = ${GIT_PASS}"
+                            echo "GIT_USR = ${GIT_PASS}"
+
+                            echo "devopsMetadataRepo = ${devopsMetadataRepo}"
+                            url = devopsMetadataRepo.split('//')[1]
+                            echo "url = ${url}"
+
+                            metadataDir = url.split('/')[2]
+                            echo "metadataDir = ${metadataDir}"
+                            metadataDir = metadataDir.split('.git')[0]
+                            echo "metadataDir = ${metadataDir}"
+
+
+                        }                        
 
                         // Continue
                     }
