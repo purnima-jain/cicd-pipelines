@@ -118,10 +118,9 @@ pipeline {
                         echo "templateType = ${templateType}"
                         if(("${templateType}" == 'busfunc')) {
                             timeout(time: 600, unit: 'SECONDS') {
-                                busFunc = input message: 'Please enter busfunc name', parameters: [string('busfuncName')]
+                                busFunc = input message: 'Please enter busfunc name'
 
-                                echo "busFunc = ${busFunc}"
-                                echo "busFunc.busfuncName = ${busFunc.busfuncName}"
+                                echo "busFunc = ${busFunc}"                                
                             }
                         }
 
