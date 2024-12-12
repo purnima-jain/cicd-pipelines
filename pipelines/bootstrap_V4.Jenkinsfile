@@ -193,6 +193,12 @@ pipeline {
                                     error "New Repo creation was rejected"
                                 }
                             }
+
+                            stage('apis registration') {
+                                script {
+                                    echo "I am here"
+                                }
+                            }
                             
                         }                        
 
