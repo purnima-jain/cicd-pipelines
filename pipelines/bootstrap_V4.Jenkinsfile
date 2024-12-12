@@ -172,7 +172,7 @@ pipeline {
                             eimId = domainYaml.nexusRawNamespace
                             echo "eimId = ${eiimId}"
 
-                            if(domainConfiguration.contains('payments') || domainConfiguration.contains('mandate'), || domainConfiguration.contains('tpt')) {
+                            if(domainConfiguration.contains('payments') || domainConfiguration.contains('mandate') || domainConfiguration.contains('tpt')) {
                                 timeout(time: 600, unit: 'SECONDS') {
                                     repoCreationApproval = input message: 'Input Requested', 
                                             parameters: [choice(choices: ['Approve', 'Reject'], name: 'result')], 
