@@ -118,7 +118,7 @@ pipeline {
                         echo "templateType = ${templateType}"
                         if(("${templateType}" == 'busfunc')) {
                             timeout(time: 600, unit: 'SECONDS') {
-                                busFunc = input message: 'Please enter busfunc name', parameters: [string('Business Function Name')]
+                                busFunc = input message: 'Please enter busfunc name', parameters: [string('Enter Business Function Name')]
                                 echo "busFunc = ${busFunc}"                                
                             }
                         }
@@ -158,14 +158,33 @@ pipeline {
                                 ls -lrt
                             """
 
-                            def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"                            
+                            def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"  
+
                             teamAccess = domainYaml.teamAccess
                             echo "teamAccess = ${teamAccess}"
 
-                            print "One teamAccess=${teamAccess}" + "   teamAccess=${teamAccess}"
-                            print "Two teamAccess=${teamAccess}       teamAccess=${teamAccess}"
+                            namespace = domainYaml.dev.namespace
+                            print "namespace = ${namespace}"
 
+                            gitOrg = domainYaml.gitOrg
+                            print "gitOrg = ${gitOrg}"
 
+                            eimId = domainYaml.nexusRawNamespace
+                            echo "eimId = ${eiimId}"
+
+                            if(domainConfiguration.contains('payments') || domainConfiguration.contains('mandate'), || domainConfiguration.contains('tpt')) {
+                                timeout(time: 600, unit: 'SECONDS') {
+                                    repoCreationApproval = input message: 'Input Requested', 
+                                            parameters: [choice(choices: ['Approve', 'Reject'], name: 'result')], 
+                                            submitter: "${domainYaml.PRApproversPSIds}", 
+                                            submitterParameter: 'approver'
+                                }
+                                echo "repoCreationApproval = ${repoCreationApproval.result}"
+                                if("${repoCreationApproval.result}" == 'reject') {
+                                    error "New Repo creation was rejected"
+                                }
+                            }
+                            
                         }                        
 
                         // Continue
