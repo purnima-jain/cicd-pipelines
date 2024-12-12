@@ -196,7 +196,26 @@ pipeline {
 
                             stage('apis registration') {
                                 script {
-                                    echo "I am here"
+                                    if((dibba_uk.contains('true') || dibba_hk.contains('true')) && (hsbcnet.contains('true'))) {
+                                        multiChannel = 'true'
+                                    }
+                                    else {
+                                        multiChannel = 'false'
+                                    }
+                                    echo "multiChannel = ${multiChannel}"
+
+                                    def job_to_run = "wf-11111-opennet/non-prod/utilities/api-bootstrap/api-devops-registration"
+                                    prNumberOutput = build job: job_to_run, returnStdout: true, parameters: [
+                                        string(name: 'apiName', value: application_name), 
+                                        string(name: 'testing_tag', value: testing_tag), 
+                                        string(name: 'external', value: external), 
+                                        string(name: 'internal', value: internal), 
+                                        string(name: 'multiChannel', value: multiChannel), 
+                                        string(name: 'gcpregion', value: gcpregion), 
+                                        string(name: 'ikpregion', value: ikpregion), string(name: 'platform', value: platform)
+                                    ]
+                                    prNumber = prNumberOutput.getBuildVariables()["prNumber"]
+                                    echo "prNumber = ${prNumber}"
                                 }
                             }
                             
