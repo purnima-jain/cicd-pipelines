@@ -170,7 +170,7 @@ pipeline {
                             print "gitOrg = ${gitOrg}"
 
                             eimId = domainYaml.nexusRawNamespace
-                            echo "eimId = ${eiimId}"
+                            echo "eimId = ${eimId}"
 
                             if(domainConfiguration.contains('payments') || domainConfiguration.contains('mandate') || domainConfiguration.contains('tpt')) {
                                 timeout(time: 600, unit: 'SECONDS') {
