@@ -161,26 +161,35 @@ pipeline {
                             def domainYaml = readYaml file: "${metadataDir}/domain-config/${params.domainConfiguration}-pipeline.yaml"  
 
                             teamAccess = domainYaml.teamAccess
-                            echo "teamAccess = ${teamAccess}"
+                            echo "teamAccess = ${teamAccess}" // opennet-developers
 
                             namespace = domainYaml.dev.namespace
-                            print "namespace = ${namespace}"
+                            print "namespace = ${namespace}"  // wsit-opennet-payments-dev
 
                             gitOrg = domainYaml.gitOrg
-                            print "gitOrg = ${gitOrg}"
+                            print "gitOrg = ${gitOrg}"        // WSIT-OPENNET-PYMT
 
                             eimId = domainYaml.nexusRawNamespace
-                            echo "eimId = ${eimId}"
+                            echo "eimId = ${eimId}"           // 1111111
 
+                            echo "domainConfiguration = ${domainConfiguration}"
                             if(domainConfiguration.contains('payments') || domainConfiguration.contains('mandate') || domainConfiguration.contains('tpt')) {
                                 timeout(time: 600, unit: 'SECONDS') {
-                                    repoCreationApproval = input message: 'Input Requested', 
+                                    repoCreationApproval = input message: 'Please confirm new repo creation', 
                                             parameters: [choice(choices: ['Approve', 'Reject'], name: 'result')], 
                                             submitter: "${domainYaml.PRApproversPSIds}", 
                                             submitterParameter: 'approver'
                                 }
+                                // submitter: User IDs and/or external group names of person or people permitted to respond to the input, separated by ','. 
+                                // Spaces will be trimmed. This means that "alice, bob, blah " is the same as "alice,bob,blah".
+                                // Note: Jenkins administrators are able to respond to the input regardless of the value of this parameter.
+
+                                // submitterParameter: If specified, this is the name of the return value that will contain the ID of the user that approves this input. 
+                                // The return value will be handled in a fashion similar to the parameters value.
+
+                                echo "approver = ${approver}"
                                 echo "repoCreationApproval = ${repoCreationApproval.result}"
-                                if("${repoCreationApproval.result}" == 'reject') {
+                                if("${repoCreationApproval.result}" == 'Reject') {
                                     error "New Repo creation was rejected"
                                 }
                             }
