@@ -204,7 +204,7 @@ pipeline {
                                     }
                                     echo "multiChannel = ${multiChannel}"
 
-                                    def job_to_run = "wf-11111-opennet/non-prod/utilities/api-bootstrap/api-devops-registration"
+                                    def job_to_run = "wf-11111-opennet/api-bootstrap/api-devops-registration"
                                     prNumberOutput = build job: job_to_run, returnStdout: true, parameters: [
                                         string(name: 'apiName', value: application_name), 
                                         string(name: 'testing_tag', value: testing_tag), 
