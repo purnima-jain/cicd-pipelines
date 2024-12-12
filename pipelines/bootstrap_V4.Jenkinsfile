@@ -187,7 +187,7 @@ pipeline {
                                 // submitterParameter: If specified, this is the name of the return value that will contain the ID of the user that approves this input. 
                                 // The return value will be handled in a fashion similar to the parameters value.
 
-                                echo "approver = ${approver}"
+                                echo "approver = ${repoCreationApproval.approver}"
                                 echo "repoCreationApproval = ${repoCreationApproval.result}"
                                 if("${repoCreationApproval.result}" == 'Reject') {
                                     error "New Repo creation was rejected"
