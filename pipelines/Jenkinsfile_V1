@@ -12,8 +12,8 @@ pipeline {
             sh '''
                ls -l
                echo "Using a multi-line shell step"
-               chmod +x test.sh
-               ./test.sh
+               chmod +x pipelines/test.sh
+               ./pipelines/test.sh
             '''
          }
       }
