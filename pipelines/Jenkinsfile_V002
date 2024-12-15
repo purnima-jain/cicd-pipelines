@@ -13,7 +13,8 @@ pipeline {
                }
          }
          steps {
-               echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONMENT}"
+               // Deploying release 20.04 to environment PROD
+               echo "Deploying release ${RELEASE} to environment ${TARGET_ENVIRONMENT}" 
          }
       }        
    }
