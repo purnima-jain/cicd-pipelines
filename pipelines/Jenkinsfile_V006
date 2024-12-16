@@ -17,6 +17,7 @@ pipeline {
    }
    post {
       success {
+         // Release 20.04, success: elton-pipeline #20.
          echo "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName}."
       }
       failure {
