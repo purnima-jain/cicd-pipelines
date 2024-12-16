@@ -6,10 +6,10 @@ pipeline {
    stages {      
       stage('Test') {
          steps {
-            echo "Testing release ${RELEASE}"
+            echo "Testing release ${RELEASE}"  // Testing release 20.04
             script {
                if (Math.random() > 0.5) {
-                  throw new Exception()
+                  //throw new Exception()
                }
             }
          }
@@ -20,6 +20,7 @@ pipeline {
          echo "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName}."
       }
       failure {
+         // Release 20.04, FAILED: elton-pipeline #15.
          echo "Release ${env.RELEASE}, FAILED: ${currentBuild.fullDisplayName}."
       }
    }
