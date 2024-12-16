@@ -11,11 +11,3 @@ pipeline {
       }
    }
 }
-
-
-void auditTools() {
-   sh '''
-      git version
-      java --version
-   '''
-}
