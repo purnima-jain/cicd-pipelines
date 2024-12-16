@@ -4,7 +4,7 @@ pipeline {
       RELEASE='20.04'
    }
    stages {
-      stage {
+      stage('Build') {
          steps {
             echo "Building release ${RELEASE}..."
             sh 'chmod +x pipelines/build.sh'
