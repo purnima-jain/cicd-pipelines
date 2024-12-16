@@ -18,6 +18,8 @@ pipeline {
                VERSION_SUFFIX = getVersionSuffix()
          }
          steps {
+            // Building version: 0.1.0 with suffix: rc.2+ci.26
+            // Building version: 0.1.0 with suffix: rc.2
             echo "Building version: ${VERSION} with suffix: ${VERSION_SUFFIX}"
          }
       }
