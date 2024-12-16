@@ -4,14 +4,16 @@ pipeline {
       RELEASE='20.04'
    }
    stages {
-      steps {
-         echo "Building release ${RELEASE}..."
-         sh 'chmod +x pipelines/build.sh'
-         withCredentials([string(credentialsId: 'an-api-key', variable: 'API_KEY')]) {
-            sh '''
-               .pipelines/build.sh
-            '''
-         }
-      }   
+      stage {
+         steps {
+            echo "Building release ${RELEASE}..."
+            sh 'chmod +x pipelines/build.sh'
+            withCredentials([string(credentialsId: 'an-api-key', variable: 'API_KEY')]) {
+               sh '''
+                  .pipelines/build.sh
+               '''
+            }
+         }   
+      }
    }
 }
