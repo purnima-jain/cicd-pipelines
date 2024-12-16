@@ -1,0 +1,26 @@
+pipeline {
+   agent any
+    environment {
+      RELEASE='20.04'
+    }
+   stages {      
+      stage('Test') {
+         steps {
+            echo "Testing release ${RELEASE}"
+            script {
+               if (Math.random() > 0.5) {
+                  throw new Exception()
+               }
+            }
+         }
+      }
+   }
+   post {
+      success {
+         echo "Release ${env.RELEASE}, success: ${currentBuild.fullDisplayName}."
+      }
+      failure {
+         echo "Release ${env.RELEASE}, FAILED: ${currentBuild.fullDisplayName}."
+      }
+   }
+}
