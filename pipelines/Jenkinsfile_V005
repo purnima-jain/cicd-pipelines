@@ -10,6 +10,7 @@ pipeline {
             sh 'chmod +x pipelines/build.sh'
             withCredentials([string(credentialsId: 'an-api-key', variable: 'API_KEY')]) {
                sh '''
+                  ls -l
                   .pipelines/build.sh
                '''
             }
