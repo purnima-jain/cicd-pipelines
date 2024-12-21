@@ -4,7 +4,6 @@ library identifier: 'cicd-shared-library@master',
 
 import com.cicd.sharedlibrary.Emails.*;
 import com.purnima.jain.Emails.*;   
-import com.purnima.jain.Emails;                     
 
 pipeline {
       stages {
