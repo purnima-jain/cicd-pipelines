@@ -6,6 +6,7 @@ library identifier: 'cicd-shared-library@master',
 //import com.purnima.jain.Emails.*;   
 
 pipeline {
+      agent any
       stages {
             stage('Build') {                  
                   steps {
