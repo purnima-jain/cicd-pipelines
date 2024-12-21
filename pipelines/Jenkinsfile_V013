@@ -2,4 +2,16 @@ library identifier: 'cicd-shared-library@master',
       retriever: modernSCM([$class: 'GitSCMSource', 
                            remote: 'https://github.com/purnima-jain/cicd-shared-library.git'])
 
-testingGroovyClass()
+pipeline {
+      stages {
+            stage('Build') {                  
+                  steps {
+                        script {
+                              mail = new Emails();
+                              echo "First Name: ${mail.firstName}";
+                        }
+                        
+                  }
+            }
+      }
+}
