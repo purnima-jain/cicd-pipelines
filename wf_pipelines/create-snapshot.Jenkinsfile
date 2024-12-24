@@ -1,5 +1,8 @@
 #!/usr/bin/env groovy
-@Library('cicd-shared-library') _
+library identifier: 'cicd-shared-library@master', 
+      retriever: modernSCM([$class: 'GitSCMSource', 
+                           remote: 'https://github.com/purnima-jain/cicd-shared-library.git'])
+                           
 properties(
     [
         [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], 
