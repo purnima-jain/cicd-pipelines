@@ -16,7 +16,7 @@ properties(
                     randomName: 'choice-parameter-22391555645786788', 
                     script: [$class: 'GroovyScript', 
                                 fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
-                                script: [classpath: [], ooldScript: '', sandbox: true, script: 'return[\'true\', \'false:selected\']']
+                                script: [classpath: [], oldScript: '', sandbox: true, script: 'return[\'true\', \'false:selected\']']
                             ]
                 ], 
                 [$class: 'CascadeChoiceParameter', 
@@ -43,8 +43,8 @@ return[
                             ]
                 ]
             ]
-        ), 
-        [$class: 'JobLocalConfiguration', changeReasonComment: '']
+        )// , 
+        // [$class: 'JobLocalConfiguration', changeReasonComment: '']
     ]
 )
 
