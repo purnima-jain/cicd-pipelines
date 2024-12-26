@@ -22,8 +22,8 @@ pipeline {
                     echo "Approved by " + response // Approved by admin
                     echo "******************************************"
                     // echo "Approved by " + approver // Error: MissingPropertyException: No such property: approver for class: groovy.lang.Binding
-                    echo "Approved by " + $approver // 
-                    // echo "Approved by " + $response.approver //                    
+                    // echo "Approved by " + $approver // Error: MissingPropertyException: No such property: $approver for class: groovy.lang.Binding
+                    echo "Approved by " + $response.approver //                    
                     // echo "Approved by " + response['approver'] // Error!! Requires script approval
                 }                
             }
