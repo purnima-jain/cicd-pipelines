@@ -12,22 +12,20 @@ pipeline {
                             string(name: 'lastName', description: 'Last Name', defaultValue: '')
                         ]
 
-                    echo "*env.name :: ${env.name}"
-                    echo "**env.name :: ${env.name.firstName}"
-                    echo "***env.name :: ${env.name.lastName}"
-                    echo "****env.name :: ${env.name.lastName}"
-                    echo "*****env.name :: " + env.name['firstName']
-                    echo "******env.name :: " + env.name['lastName']
+                    echo "*env.name :: ${env.name}"                     // *env.name :: {firstName=Purnima, lastName=Jain}
+                    // echo "**env.name :: ${env.name.firstName}"       // Error
+                    // echo "***env.name :: ${env.name.lastName}"       // Error
+                    // echo "*****env.name :: " + env.name['firstName'] // Error
+                    // echo "******env.name :: " + env.name['lastName'] // Error
                 }
 
                 echo "******************************************"
-                echo "*env.name :: ${env.name}"
-                echo "**env.name :: ${env.name.firstName}"
-                echo "***env.name :: ${env.name.lastName}"
-                echo "****env.name :: ${env.name.lastName}"
-                echo "*****env.name :: " + env.name['firstName']
-                echo "******env.name :: " + env.name['lastName']
-
+                echo "*env.name :: ${env.name}"                         // *env.name :: {firstName=Purnima, lastName=Jain}
+                // echo "**env.name :: ${env.name.firstName}"           // Error
+                // echo "***env.name :: ${env.name.lastName}"           // Error
+                // echo "****env.name :: ${env.name.lastName}"          // Error
+                // echo "*****env.name :: " + env.name['firstName']     // Error
+                // echo "******env.name :: " + env.name['lastName']     // Error
             }
         }
     }
