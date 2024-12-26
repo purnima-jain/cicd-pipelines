@@ -115,10 +115,10 @@ multiline comment'''
                             password(name: 'password', description: 'Enter Password', defaultValue: ''),
                         ]                        
                     
-                    echo "Username :: " + loginInfo['username']
-                    echo "Username :: " + loginInfo.username
-                    echo "Password :: ${loginInfo['password']}"
-                    echo "Password :: " + loginInfo.password
+                    echo "Username :: " + loginInfo['username']   // Username :: admin
+                    echo "Username :: " + loginInfo.username      // Username :: admin
+                    echo "Password :: ${loginInfo['password']}"   // Password :: password123
+                    echo "Password :: " + loginInfo.password      // Password :: password123
                     echo "******************************************"
                 }                
             }
