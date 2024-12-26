@@ -5,7 +5,9 @@ pipeline {
         
         stage("Get First Name & Last Name") {
             steps {
-                getName()
+                def name = getName()
+                echo "**********"
+                echo "Name :: " + $name
             }
         }
         
@@ -19,8 +21,8 @@ String getName() {
                             string(name: 'lastName', description: 'Last Name', defaultValue: '')
                         ]
 
-    echo "First Name :: " + name["firstName"]
-    echo "Last Name :: " + name["lastName"]
+    echo "First Name :: " + name["firstName"]  // First Name :: Purnima
+    echo "Last Name :: " + name["lastName"]    // Last Name :: Jain
 
     return name["firstName"] + " " + name["lastName"]
 }
