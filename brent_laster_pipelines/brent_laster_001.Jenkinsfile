@@ -76,9 +76,9 @@ pipeline {
                         ]                        
                     
                     echo "response :: " + response                     // response :: [environment:PROD, isDeploy:true]
-                    echo "response :: $response"
-                    // echo "environment :: " + response["environment"]
-                    // echo "isDeploy :: " + response["isDeploy"]                    
+                    echo "response :: $response"                       // response :: [environment:PROD, isDeploy:true]
+                    echo "environment :: " + response["environment"]   // environment :: PROD
+                    echo "isDeploy :: " + response["isDeploy"]         // isDeploy :: true           
                     echo "******************************************"
                 }                
             }
