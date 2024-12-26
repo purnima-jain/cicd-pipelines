@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     stages {
-        stage("Collecting and Printing Input") {
+        stage("Checking to continue....") {
             steps {
-                echo "Collecting and Printing Input......"                
                 input "Continue to next Stage?"                
             }
         }
