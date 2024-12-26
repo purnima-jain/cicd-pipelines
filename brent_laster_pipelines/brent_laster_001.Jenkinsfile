@@ -46,6 +46,22 @@ pipeline {
                     echo "Environment to be deployed to $response['environment']"   // Environment to be deployed to 
                                                                                     //      [approver:admin, environment:PROD]['environment']
                     echo "Environment to be deployed to " + response["environment"] // Environment to be deployed to PROD
+                    echo "******************************************"
+                }                
+            }
+        }
+
+        stage("Capturing Boolean input....") {
+            steps {
+                script {
+                    def response = input message: "Do you want to deploy?",
+                        ok: "Yes",
+                        parameters: [booleanParam(defaultValue: true, description: 'Deploy?', name: 'isDeploy')]
+                    
+                    echo "Do you want to deploy? $response" 
+                    echo "Do you want to deploy? ${response['isDeploy']}"
+                    echo "Do you want to deploy? " + response["isDeploy"]
+                    echo "******************************************"
                 }                
             }
         }
