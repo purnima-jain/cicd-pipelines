@@ -6,7 +6,8 @@ pipeline {
         stage("Get First Name & Last Name") {
             steps {
                 // def name = getName() // Error
-                env.name = getName() 
+                // env.name = getName() // Error
+                echo "Name :: " + getName()
                 echo "**********"
                 echo "Name :: " + ${env.name}
             }
