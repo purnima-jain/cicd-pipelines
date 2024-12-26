@@ -89,7 +89,8 @@ pipeline {
                 script {
                     def response = input message: "Input Values:",
                         parameters: [
-                            choice(name: 'environment', description: 'Select Deployment Environment', choices: ['dev', 'uat', 'pre-prod', 'prod']),
+                            choice(name: 'environment', description: 'Select Deployment Environment', 
+                                    choices: ['dev', 'uat', 'pre-prod', 'prod']),
                             text(name: 'comment', description: 'Enter comment', defaultValue: '''This
 is a
 multiline comment'''
@@ -100,6 +101,24 @@ multiline comment'''
                     echo "response :: $response"   // response :: [environment:uat, comment:This\nis a\nmultiline comment]
                     echo "environment :: " + response["environment"] // environment :: uat
                     echo "comment :: " + response["comment"]         // comment :: This\nis a\nmultiline comment      
+                    echo "******************************************"
+                }                
+            }
+        }
+
+        stage("Capturing Username & Password....") {
+            steps {
+                script {
+                    def loginInfo = input message: "Login:",
+                        parameters: [
+                            string(name: 'username', description: 'Enter Username', defaultValue: ''),
+                            password(name: 'password', description: 'Enter Password', defaultValue: ''),
+                        ]                        
+                    
+                    echo "Username :: " + loginInfo['username']
+                    echo "Username :: " + loginInfo.username
+                    echo "Password :: ${loginInfo['password']}"
+                    echo "Password :: " + loginInfo.password
                     echo "******************************************"
                 }                
             }
