@@ -20,7 +20,7 @@ pipeline {
                     echo "Approved by ${response}"
                     echo "Approved by $response"
                     echo "Approved by " + response
-                    echo "Approved by " + response['approver']
+                    // echo "Approved by " + response['approver']
                 }                
             }
         }
