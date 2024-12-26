@@ -17,12 +17,18 @@ pipeline {
                         submitter: 'admin,JohnDoe', // admin and JohnDoe are usernames
                         submitterParameter: "approver"
                     
-                    echo "Approved by ${response}"
-                    echo "Approved by $response"
-                    echo "Approved by " + response
-                    // echo "Approved by " + response['approver']
+                    echo "Approved by ${response}" // Approved by admin
+                    echo "Approved by $response"   // Approved by admin
+                    echo "Approved by " + response // Approved by admin
+                    echo "******************************************"
+                    echo "Approved by " + approver //  
+                    // echo "Approved by " + $approver // 
+                    // echo "Approved by " + $response.approver //                    
+                    // echo "Approved by " + response['approver'] // Error!! Requires script approval
                 }                
             }
         }
+
+
     }
 }
