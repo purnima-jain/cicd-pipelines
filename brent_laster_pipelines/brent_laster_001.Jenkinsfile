@@ -59,7 +59,7 @@ pipeline {
                         parameters: [booleanParam(defaultValue: true, description: 'Deploy?', name: 'isDeploy')]
                     
                     echo "Do you want to deploy? $response" 
-                    echo "Do you want to deploy? ${response['isDeploy']}"
+                    // echo "Do you want to deploy? ${response['isDeploy']}" // Error
                     echo "Do you want to deploy? " + response["isDeploy"]
                     echo "******************************************"
                 }                
