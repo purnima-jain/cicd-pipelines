@@ -75,9 +75,10 @@ pipeline {
                             string(defaultValue: 'PROD', description: 'Environment to deploy to ', name: 'environment')
                         ]                        
                     
-                    echo "response :: " + $response
-                    echo "environment :: " + response["environment"]
-                    echo "isDeploy :: " + response["isDeploy"]                    
+                    echo "response :: " + response
+                    // echo "response :: $response"
+                    // echo "environment :: " + response["environment"]
+                    // echo "isDeploy :: " + response["isDeploy"]                    
                     echo "******************************************"
                 }                
             }
