@@ -83,5 +83,26 @@ pipeline {
                 }                
             }
         }
+
+        stage("Capturing Choice & Multi-line input....") {
+            steps {
+                script {
+                    def response = input message: "Input Values:",
+                        parameters: [
+                            choice(name: 'environment', description: 'Select Deployment Environment', choices: ['dev', 'uat', 'pre-prod', 'prod']),
+                            text(name: 'comment', description: 'Enter comment', defaultValue: '''This
+is a
+multiline comment'''
+                            )
+                        ]                        
+                    
+                    echo "response :: " + response
+                    echo "response :: $response"
+                    echo "environment :: " + response["environment"]
+                    echo "isDeploy :: " + response["comment"]         
+                    echo "******************************************"
+                }                
+            }
+        }
     }
 }
