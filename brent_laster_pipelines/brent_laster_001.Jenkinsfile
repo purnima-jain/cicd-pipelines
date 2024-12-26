@@ -38,9 +38,11 @@ pipeline {
                         submitterParameter: "approver",
                         parameters: [string(defaultValue: 'PROD', description: 'Environment to deploy to ', name: 'environment')]
                     
-                    echo "Environment to be deployed to ${response['environment']}"
-                    echo "Environment to be deployed to $response['environment']"
-                    echo "Environment to be deployed to " + response["environment"]
+                    echo "Environment to be deployed to $response"
+                    echo "Environment to be deployed to ${response['environment']}" // Environment to be deployed to PROD
+                    echo "Environment to be deployed to $response['environment']"   // Environment to be deployed to 
+                                                                                    // [approver:admin, environment:PROD]['environment']
+                    echo "Environment to be deployed to " + response["environment"] // Environment to be deployed to PROD
                 }                
             }
         }
