@@ -6,7 +6,7 @@ pipeline {
         stage("Get First Name & Last Name without script block") {
             steps {
                 // def name = getName() // Error
-                echo "*Name :: " + getName() // Name :: Purnima Jain
+                echo "*Name :: " + getName() // *Name :: Purnima Jain
                 echo "******************************************"
             }           
         }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     def name = getName()
-                    echo "**Name :: " + name
+                    echo "**Name :: " + name // **Name :: Purnima Jain
                     echo "******************************************"
                 }
             }           
