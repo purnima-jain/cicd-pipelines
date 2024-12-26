@@ -32,16 +32,17 @@ pipeline {
         stage("Capturing the String input....") {
             steps {
                 script {
-                    def response = input message: "Continue to next Stage?",
+                    def response = input message: "Continue to deploy?",
                         ok: "Yes, please!!",
                         submitter: 'admin,JohnDoe',
                         submitterParameter: "approver",
                         parameters: [string(defaultValue: 'PROD', description: 'Environment to deploy to ', name: 'environment')]
                     
-                    echo "Environment to be deployed to $response"
+                    echo "Environment to be deployed to $response"                  // Environment to be deployed to 
+                                                                                    //      [approver:admin, environment:PROD]
                     echo "Environment to be deployed to ${response['environment']}" // Environment to be deployed to PROD
                     echo "Environment to be deployed to $response['environment']"   // Environment to be deployed to 
-                                                                                    // [approver:admin, environment:PROD]['environment']
+                                                                                    //      [approver:admin, environment:PROD]['environment']
                     echo "Environment to be deployed to " + response["environment"] // Environment to be deployed to PROD
                 }                
             }
