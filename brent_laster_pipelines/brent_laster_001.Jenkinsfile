@@ -58,9 +58,26 @@ pipeline {
                         ok: "Yes",
                         parameters: [booleanParam(defaultValue: true, description: 'Deploy?', name: 'isDeploy')]
                     
-                    echo "Do you want to deploy? $response"  // Do you want to deploy? true
-                    // echo "Do you want to deploy? ${response['isDeploy']}" // Error
-                    echo "Do you want to deploy? " + response["isDeploy"]
+                    echo "Do you want to deploy? $response"                     // Do you want to deploy? true
+                    // echo "Do you want to deploy? ${response['isDeploy']}"    // Error
+                    // echo "Do you want to deploy? " + response["isDeploy"]    // Error
+                    echo "******************************************"
+                }                
+            }
+        }
+
+        stage("Capturing Boolean & String input....") {
+            steps {
+                script {
+                    def response = input message: "Input Values:",
+                        parameters: [
+                            booleanParam(defaultValue: true, description: 'Deploy?', name: 'isDeploy'),
+                            string(defaultValue: 'PROD', description: 'Environment to deploy to ', name: 'environment')
+                        ]                        
+                    
+                    echo "response :: " + $response
+                    echo "environment :: " + response["environment"]
+                    echo "isDeploy :: " + response["isDeploy"]                    
                     echo "******************************************"
                 }                
             }
