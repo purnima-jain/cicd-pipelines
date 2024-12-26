@@ -7,9 +7,9 @@ pipeline {
             steps {
                 script {
                     def name = getName()
-                    echo "Name :: " + name
-                    echo "First Name :: " + name["firstName"]
-                    echo "Last Name :: " + name["lastName"]
+                    echo "Name :: " + name                    // Name :: [firstName:Purnima, lastName:Jain]
+                    echo "First Name :: " + name["firstName"] // First Name :: Purnima
+                    echo "Last Name :: " + name["lastName"]   // Last Name :: Jain
                 }
             }           
         }
