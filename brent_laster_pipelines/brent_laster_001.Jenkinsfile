@@ -96,10 +96,10 @@ multiline comment'''
                             )
                         ]                        
                     
-                    echo "response :: " + response
-                    echo "response :: $response"
-                    echo "environment :: " + response["environment"]
-                    echo "isDeploy :: " + response["comment"]         
+                    echo "response :: " + response // response :: [environment:uat, comment:This\nis a\nmultiline comment]
+                    echo "response :: $response"   // response :: [environment:uat, comment:This\nis a\nmultiline comment]
+                    echo "environment :: " + response["environment"] // environment :: uat
+                    echo "comment :: " + response["comment"]         // comment :: This\nis a\nmultiline comment      
                     echo "******************************************"
                 }                
             }
