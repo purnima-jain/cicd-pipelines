@@ -11,16 +11,16 @@ pipeline {
                     env.responseEnv = input message: 'Enter Name', 
                         parameters: [string(name: 'lastName', description: 'Enter Last Name', defaultValue: '')]
 
-                    echo "* First Name is " + responseDef
-                    echo "** Last Name is " + responseEnv
+                    echo "* First Name is " + responseDef    // * First Name is Purnima
+                    echo "** Last Name is " + responseEnv    // ** Last Name is Jain
                 }
-                // echo "First Name is " + responseDef["firstName"] // Error
-                // echo "Last Name is " + responseEnv["lastName"] // Error
-                echo "*** Last Name is " + responseEnv // Last Name is Jain
-                // echo "Last Name is " + responseEnv["lastName"] // Error
-                echo "**** Last Name is " + env.responseEnv // Last Name is Jain
+                // echo "First Name is " + responseDef["firstName"]      // Error
+                // echo "Last Name is " + responseEnv["lastName"]        // Error
+                echo "*** Last Name is " + responseEnv                   // *** Last Name is Jain
+                // echo "Last Name is " + responseEnv["lastName"]        // Error
+                echo "**** Last Name is " + env.responseEnv              // **** Last Name is Jain
                 // echo "Last Name is " + env.responseEnv["lastName"] // Error
-                echo "***** Last Name is ${env.responseEnv['lastName']}" // Error
+                // echo "***** Last Name is ${env.responseEnv['lastName']}" // Error
             }
         }
     }
