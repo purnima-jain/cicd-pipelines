@@ -19,10 +19,10 @@ pipeline {
                 echo "First Name is $params.firstName"       // First Name is Jane
                 echo "First Name is " + params['firstName']  // First Name is Jane
                 echo "******************************************"
-                echo "Last Name is " + params.lastName     // First Name is Jane
-                echo "Last Name is ${params.lastName}"     // First Name is Jane
-                echo "Last Name is $params.lastName"       // First Name is Jane
-                echo "Last Name is " + params['lastName']  // First Name is Jane
+                echo "Last Name is " + params.lastName       // Last Name is Doe
+                echo "Last Name is ${params.lastName}"       // Last Name is Doe
+                echo "Last Name is $params.lastName"         // Last Name is Doe
+                echo "Last Name is " + params['lastName']    // Last Name is Doe
             }
         }
     }
