@@ -1,23 +1,24 @@
 pipeline {
     agent any
 
-    environment {
-        name = ''
-    }
-
     stages {
         
-        stage("Get First Name & Last Name") {
+        stage("Get First Name & Last Name without script block") {
             steps {
                 // def name = getName() // Error
-                // env.name = getName() // Error
                 echo "*Name :: " + getName() // Name :: Purnima Jain
-                echo "**********"
-                env.name = getName()
-                echo "**Name :: " + ${env.name}
-            }
+                echo "******************************************"
+            }           
+        }
 
-            echo "***Name :: " + ${env.name}
+        stage("Get First Name & Last Name with script block") {
+            steps {
+                script {
+                    def name = getName()
+                    echo "**Name :: " + name
+                    echo "******************************************"
+                }
+            }           
         }
         
     }
