@@ -6,6 +6,7 @@ pipeline {
         stage("Checking to continue....") {
             steps {
                 input message: "Continue to next Stage?"
+                echo "******************************************"
             }
         }
         
@@ -20,11 +21,12 @@ pipeline {
                     echo "Approved by ${response}" // Approved by admin
                     echo "Approved by $response"   // Approved by admin
                     echo "Approved by " + response // Approved by admin
-                    echo "******************************************"
+                    
                     // echo "Approved by " + approver             // Error
                     // echo "Approved by " + $approver            // Error
                     // echo "Approved by " + $response.approver   // Error              
                     // echo "Approved by " + response['approver'] // Error
+                    echo "******************************************"
                 }                
             }
         }
