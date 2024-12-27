@@ -14,7 +14,7 @@ pipeline {
                             string(name: 'lastName', description: 'Last Name', defaultValue: '')
                         ]                    
                 }
-                echo "Name :: " + name  // Name :: [firstName:Purnima, lastName:Jain] 
+                echo "Name :: " + name  // Name :: [firstName:Purnima, lastName:Jain]
             }           
         }
         
