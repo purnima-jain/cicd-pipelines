@@ -21,9 +21,10 @@ pipeline {
                         name = "Jane Doe"
                     }
                 }
-                echo "Name :: " + name
+                echo "Name :: " + name // Name :: [firstName:Purnima, lastName:Jain]
+                                       // In case of timeout: Name :: Jane Doe
             } 
         }
-        
+
     }
 }
