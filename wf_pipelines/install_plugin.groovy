@@ -7,7 +7,7 @@ updateCenter = Jenkins.instance.updateCenter
 pluginManager.doCheckUpdatesServer()
 
 // List of Plugins with Dependencies
-["pipeline-stage-view", "uno-choice", "extended-choice-parameter", "ansicolor"].each {
+["pipeline-stage-view", "uno-choice", "extended-choice-parameter", "ansicolor", "pipeline-utility-steps"].each {
     if(! pluginManager.getPlugin(it)) {
         deployment = updateCenter.getPlugin(it).deploy(true)
         deployment.get() 
