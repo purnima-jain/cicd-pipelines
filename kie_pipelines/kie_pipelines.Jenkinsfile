@@ -4,5 +4,5 @@ library identifier: 'cicd-shared-library@master',
 
 
 
-changeAuthor = ENV.CHANGE_AUTHOR
+changeAuthor = env.CHANGE_AUTHOR
 echo "changeAuthor: ${changeAuthor}"
