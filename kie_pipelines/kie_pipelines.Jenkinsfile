@@ -11,30 +11,30 @@ env.ghprbAuthorRepoGitUrl = "https://github.com/purnima-jain/business-applicatio
 // Hard-Coding Environment Variables - END
 
 changeAuthor = getGroup() ?: env.CHANGE_AUTHOR
-echo "changeAuthor: ${changeAuthor}"
+echo "changeAuthor: ${changeAuthor}" // changeAuthor: purnima-jain
 
 
 def getGroup() {
-    def group =getProjectGroupName(getProject())[0]
-    echo "*group: ${group}"
+    def group = getProjectGroupName(getProject())[0]
+    echo "*group: ${group}" // *group: purnima-jain
     return group
 }
 
 def getProject() {
     def project = (ghprbAuthorRepoGitUrl =~ /((git|ssh|http(s)?)|(git@[\w\.]+))(:(\/\/)?(github.com\/))([\w\.@\:\/\-~]+)(\.git)(\/)?/)[0][8]
-    echo "*project: ${project}"
+    echo "*project: ${project}" // *project: purnima-jain/business-application-payments-daily
     return project
 }
 
 def getProjectGroupName(String project, String defaultGroup = "purnima-jain") {
     def projectNameGroup = project.split("\\/")
-    echo "projectNameGroup: ${projectNameGroup}"
+    echo "projectNameGroup: ${projectNameGroup}" // projectNameGroup: [purnima-jain, business-application-payments-daily]
 
     def group = projectNameGroup.size() > 1 ? projectNameGroup[0] : defaultGroup
-    echo "**group: ${group}"
+    echo "**group: ${group}" // **group: purnima-jain
 
     def name = projectNameGroup.size() > 1 ? projectNameGroup[1] : project
-    echo "name: ${name}"
+    echo "name: ${name}" // name: business-application-payments-daily
 
     return [group, name]
 }
