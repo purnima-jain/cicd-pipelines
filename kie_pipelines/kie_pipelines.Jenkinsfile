@@ -7,7 +7,7 @@ library identifier: 'cicd-shared-library@master',
 // env.CHANGE_AUTHOR = "Purnima Jain"
 // env.CHANGE_BRANCH = "master"
 // env.CHANGE_TARGET = "master"
-env.ghprbAuthorRepoGitUrl = "https://github.com/purnima-jain/business-application-payments-daily.git"
+env.ghprbAuthorRepoGitUrl = "https://github.com/purnima-jain/cicd-pipelines.git"
 // Hard-Coding Environment Variables - END
 
 changeAuthor = getGroup() ?: env.CHANGE_AUTHOR
@@ -22,19 +22,19 @@ def getGroup() {
 
 def getProject() {
     def project = (ghprbAuthorRepoGitUrl =~ /((git|ssh|http(s)?)|(git@[\w\.]+))(:(\/\/)?(github.com\/))([\w\.@\:\/\-~]+)(\.git)(\/)?/)[0][8]
-    echo "*project: ${project}" // *project: purnima-jain/business-application-payments-daily
+    echo "*project: ${project}" // *project: purnima-jain/cicd-pipelines
     return project
 }
 
 def getProjectGroupName(String project, String defaultGroup = "purnima-jain") {
     def projectNameGroup = project.split("\\/")
-    echo "projectNameGroup: ${projectNameGroup}" // projectNameGroup: [purnima-jain, business-application-payments-daily]
+    echo "projectNameGroup: ${projectNameGroup}" // projectNameGroup: [purnima-jain, cicd-pipelines]
 
     def group = projectNameGroup.size() > 1 ? projectNameGroup[0] : defaultGroup
     echo "**group: ${group}" // **group: purnima-jain
 
     def name = projectNameGroup.size() > 1 ? projectNameGroup[1] : project
-    echo "name: ${name}" // name: business-application-payments-daily
+    echo "name: ${name}" // name: cicd-pipelines
 
     return [group, name]
 }
